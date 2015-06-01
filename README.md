@@ -24,8 +24,9 @@ Usage
 From the command line:
 ```shell
 # Outputs the registered android_id
-java -Xbootclasspath/a:lib/httpcore-4.2.2.jar:lib/httpclient-4.2.2.jar:lib/httpmime-4.2.2.jar:lib/httpclient-cache-4.2.2.jar:lib/commons-logging-1.1.1.jar:lib/fluent-hc-4.2.2.jar:lib/protobuf-java-2.4.1.jar -jar android-checkin-jb.jar <email> <password>
+java -Xbootclasspath/a:lib/httpcore-4.2.2.jar:lib/httpclient-4.2.2.jar:lib/httpmime-4.2.2.jar:lib/httpclient-cache-4.2.2.jar:lib/commons-logging-1.1.1.jar:lib/fluent-hc-4.2.2.jar:lib/protobuf-java-2.4.1.jar:lib/commons-codec-1.6.jar -jar android-checkin-jb.jar <email> <password>
 ```
+The resulting android_id is in decimal format. However we need a hexadecimal format to feed Blank Store. Do the conversion using https://www.easycalculation.com/decimal-converter.php
 
 To obtain androidId via adb
 ```shell
@@ -41,7 +42,11 @@ From the command line:
 	mvn package
 ```
 
-If you get an error like `[ERROR] Failed to execute goal com.github.igor-petruk.protobuf:protobuf-maven-plugin:0.4:run (default) on project android-checkin: Unable to find 'protoc' -> [Help 1]`, download protobuf-2.4.1 [source](https://protobuf.googlecode.com/files/protobuf-2.4.1.tar.gz) and build. Make sure the executable `protoc` is in your PATH.
+If you get an error like `[ERROR] Failed to execute goal com.github.igor-petruk.protobuf:protobuf-maven-plugin:0.4:run (default) on project android-checkin: Unable to find 'protoc' -> [Help 1]`, either:
+a) install libprotobuf-java
+apt-get install libprotobuf-java
+or
+b) download protobuf-2.4.1 [source](https://protobuf.googlecode.com/files/protobuf-2.4.1.tar.gz) and build. Make sure the executable `protoc` is in your PATH.
 
 License
 -------
